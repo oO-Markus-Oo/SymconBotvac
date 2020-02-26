@@ -134,7 +134,7 @@ class BotvacRobot extends IPSModule
         $params = array();
         $params['mode'] = GetValueBoolean($this->GetIDForIdent('ECO')) ? 1 : 2;
         $params['modifier'] = 1;
-        $params['navigationMode'] = 2;
+        $params['navigationMode'] = GetValueInteger($this->GetIDForIdent('NAVIGATIONMODE'));
 
         if ($spot) {
             $params['category'] = 3;
