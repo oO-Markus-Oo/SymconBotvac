@@ -72,6 +72,7 @@ class BotvacRobot extends IPSModule
         }
         if (!@$this->GetIDForIdent('DOCKED')) {
             $DockedID = $this->RegisterVariableBoolean('DOCKED', 'Im Dock', 'Botvac.YesNo', 52);
+            $DockSeenID = $this->RegisterVariableBoolean('DOCKSEEN', 'Dock gesehen', 'Botvac.YesNo', 53);
             $this->EnableAction('DOCKED');
             IPS_SetIcon($DockedID, 'Plug');
         }
@@ -193,6 +194,7 @@ class BotvacRobot extends IPSModule
         if (@$result['details']) {
             SetValueBoolean($this->GetIDForIdent('SCHEDULE'), @$result['details']['isScheduleEnabled']);
             SetValueBoolean($this->GetIDForIdent('DOCKED'), @$result['details']['isDocked']);
+            SetValueBoolean($this->GetIDForIdent('DOCKSEEN'), @$result['details']['dockHasBeenSeen']);
             SetValueInteger($this->GetIDForIdent('BATTERY'), @$result['details']['charge']);
             $charging = '';
             if ($result['details']['isCharging']) {
