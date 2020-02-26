@@ -213,7 +213,7 @@ class BotvacRobot extends IPSModule
         }
 
         $this->UpdateCommandProfile(@$result['availableCommands']);
-        SetValueString($this->GetIDForIdent('DEBUG'), @$result);
+        SetValueString($this->GetIDForIdent('DEBUG'), implode(@$result));
 
         return $result;
     }
