@@ -192,7 +192,7 @@ class BotvacRobot extends IPSModule
         if (@$result['cleaning']) {
             if ($this->isCleaning()) {
                 SetValueBoolean($this->GetIDForIdent('ECO'), @$result['cleaning']['mode'] == 1);
-                SetValueInteger($this->GetIDForIdent('NAVIGATIONMODE'), @$result['cleaning']['navigationMode'] == 1);
+                SetValueInteger($this->GetIDForIdent('NAVIGATIONMODE'), @$result['cleaning']['navigationMode']);
             }
         }
 
