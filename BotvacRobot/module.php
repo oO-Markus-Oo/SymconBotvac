@@ -130,6 +130,7 @@ class BotvacRobot extends IPSModule
             $params['category'] = 3;
             $params['spotWidth'] = 200;
             $params['spotHeight'] = 200;
+            $params['navigationMode'] = 2;
         } else {
             $params['category'] = 2;
         }
