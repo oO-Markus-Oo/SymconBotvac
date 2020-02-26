@@ -49,8 +49,15 @@ class BotvacRobot extends IPSModule
             IPS_SetVariableProfileAssociation('Botvac.Action', 10, 'IEC Test', 'Information', -1);
         }
 
+        if (!IPS_VariableProfileExists('Botvac.NavigationMode')) {
+            IPS_CreateVariableProfile('Botvac.NavigationMode', 1);
+            IPS_SetVariableProfileAssociation('Botvac.NavigationMode', 1, 'Normal', 'Motion', -1);
+            IPS_SetVariableProfileAssociation('Botvac.NavigationMode', 2, 'Extra-Vorsicht', 'Flower', -1);
+        }
+
         $this->RegisterVariableInteger('STATE', 'Zustand', 'Botvac.State', 1);
         $this->RegisterVariableInteger('ACTION', 'Aktion', 'Botvac.Action', 2);
+        $this->RegisterVariableInteger('NAVIGATIONMODE', 'Navigations-Modus', 'Botvac.NavigationMode', 3);
         $this->RegisterVariableString('ERROR', 'Fehler', '', 3);
         $this->RegisterVariableString('DEBUG', 'Debug', '', 3);
 
@@ -185,6 +192,7 @@ class BotvacRobot extends IPSModule
         if (@$result['cleaning']) {
             if ($this->isCleaning()) {
                 SetValueBoolean($this->GetIDForIdent('ECO'), @$result['cleaning']['mode'] == 1);
+                SetValueInteger($this->GetIDForIdent('NAVIGATIONMODE'), @$result['cleaning']['navigationMode'] == 1);
             }
         }
 
