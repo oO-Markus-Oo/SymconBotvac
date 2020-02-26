@@ -52,6 +52,7 @@ class BotvacRobot extends IPSModule
         $this->RegisterVariableInteger('STATE', 'Zustand', 'Botvac.State', 1);
         $this->RegisterVariableInteger('ACTION', 'Aktion', 'Botvac.Action', 2);
         $this->RegisterVariableString('ERROR', 'Fehler', '', 3);
+        $this->RegisterVariableString('DEBUG', 'Debug', '', 3);
 
         if (!@$this->GetIDForIdent('BATTERY')) {
             $this->RegisterVariableInteger('BATTERY', 'Batterie', '~Battery.100', 80);
@@ -212,6 +213,7 @@ class BotvacRobot extends IPSModule
         }
 
         $this->UpdateCommandProfile(@$result['availableCommands']);
+        SetValueString($this->GetIDForIdent('DEBUG'), @$result);
 
         return $result;
     }
