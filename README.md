@@ -24,7 +24,7 @@ SymconBotvac ist eine Erweiterung für die Heimautomatisierung IP Symcon. Mithil
 ### 3. Software-Installation
 
 Über das Modul-Control folgende URL hinzufügen.  
-`git://github.com/traxanos/SymconBotvac.git`  
+`https://github.com/oO-Markus-Oo/SymconBotvac`  
 
 ### 4. Einrichten der Instanzen in IP-Symcon
 
