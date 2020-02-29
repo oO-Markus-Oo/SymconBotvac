@@ -288,7 +288,7 @@ class BotvacRobot extends IPSModule
             IPS_DeleteVariableProfile($name);
         }
         if (!IPS_VariableProfileExists($name)) {
-            IPS_CreateVariableProfile($name, 1);
+            IPS_CreateVariableProfile($name, 3);
             IPS_SetVariableProfileAssociation($name, 0, 'Auswählen', '', -1);
         }
 
