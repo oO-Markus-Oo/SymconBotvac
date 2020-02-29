@@ -35,7 +35,7 @@ class BotvacControl extends IPSModule
                 $secret = $robot['secret_key'];
                 $name = $robot['name'];
                 $nucleoUrl = $robot['nucleo_url'];
-                $mapurl = $vendorBaseUrl . '/users/me/robots/'.$serial.'/maps';
+                $mapurl = $vendorBaseUrl . '/users/me/robots/'.$serial.'/persistent_maps';
                 $mapparams = array();
                 $mapheaders = array();
                 $mapheaders[] = "Accept: application/json";
