@@ -56,6 +56,7 @@ class BotvacControl extends IPSModule
             IPS_SetProperty($id, 'NucleoUrl', $nucleo_url . "/vendors/" . $VendorName);
             IPS_SetName($id, $name);
             IPS_ApplyChanges($id);
+            CreateCategoryByName($id, "Maps", $pos=0, $hidden=true);
             BVC_Update($id);
         }
         echo "$name (Serial: $serial)\n";
@@ -95,6 +96,29 @@ class BotvacControl extends IPSModule
         }
     }
 
+    if (!function_exists('CreateCategoryByName'))
+    {
+    public function CreateCategoryByName($ParentID, $name, $pos=0, $hidden=false)
+    {
+      global $_IPS;
+      $Catid = @IPS_GetCategoryIDByName ($name, $ParentID);
+      if($Catid === false)
+      {
+        $Catid = IPS_CreateCategory();
+        IPS_SetParent($Catid, $ParentID);
+        IPS_SetName($Catid, $name);
+        IPS_SetPosition($Catid, $pos);
+        IPS_SetHidden($Catid, $hidden);
+        IPS_SetInfo($Catid, "This category was created by: #".$_IPS['SELF']."#");
+      }
+      else
+      {
+        IPS_SetPosition($Catid, $pos);
+      }
+      return $Catid;
+    }
+    }    
+    
     public function Request($url, $method, $params = array(), $headers = array())
     {
         $client = curl_init($url);
