@@ -226,6 +226,9 @@ class BotvacRobot extends IPSModule
         $this->UpdateCommandProfile(@$result['availableCommands']);
         SetValueString($this->GetIDForIdent('DEBUG'), json_encode(@$result));
 
+        $maps_array = json_decode(ReadPropertyString('Maps'));
+        print_r($maps_array);
+        
         return $result;
     }
 
