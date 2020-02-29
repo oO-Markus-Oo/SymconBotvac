@@ -7,6 +7,7 @@ class BotvacRobot extends IPSModule
         $this->RegisterPropertyString('Serial', '');
         $this->RegisterPropertyString('Secret', '');
         $this->RegisterPropertyString('NucleoUrl', '');
+        $this->RegisterPropertyString('Maps', '');
         $this->RegisterPropertyInteger('UpdateInterval', 120);
 
         $this->RegisterTimer('Update', 0, 'BVC_Update($_IPS[\'TARGET\'], 0);');
