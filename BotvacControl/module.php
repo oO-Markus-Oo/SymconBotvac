@@ -35,12 +35,21 @@ class BotvacControl extends IPSModule
                 $secret = $robot['secret_key'];
                 $name = $robot['name'];
                 $nucleoUrl = $robot['nucleo_url'];
-                $this->CreateOrUpdateRobot($serial, $secret, $name, $nucleoUrl);
+                $mapurl = $vendorBaseUrl . '/users/me/robots/'.$serial.'/maps';
+                $mapparams = array();
+                $mapheaders = array();
+                $mapheaders[] = "Accept: application/json";
+                $mapheaders[] = "Authorization: Token token=" . $this->ReadPropertyString('Token');
+                $mapresult = $this->Request($mapurl, 'GET', $mapparams, $mapheaders);
+                if (isset($mapresult['maps'])) {
+                    $map_arr = json_encode($mapresult);
+                }                      
+                $this->CreateOrUpdateRobot($serial, $secret, $name, $nucleoUrl, $map_arr);
             }
         }      
     }
 
-    private function CreateOrUpdateRobot($serial, $secret, $name, $nucleo_url)
+    private function CreateOrUpdateRobot($serial, $secret, $name, $nucleo_url, $map_arr)
     {
         $Category = $this->ReadPropertyInteger('Category');
         $VendorName = $this->ReadPropertyString('VendorName');
@@ -54,6 +63,7 @@ class BotvacControl extends IPSModule
         if ($id) {
             IPS_SetProperty($id, 'Secret', $secret);
             IPS_SetProperty($id, 'NucleoUrl', $nucleo_url . "/vendors/" . $VendorName);
+            IPS_SetProperty($id, 'Maps', $map_arr);
             IPS_SetName($id, $name);
             IPS_ApplyChanges($id);
             BVC_Update($id);
