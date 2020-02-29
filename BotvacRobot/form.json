@@ -10,6 +10,11 @@
       "caption": "Secret"
     },
     {
+      "name": "Maps",
+      "type": "ValidationTextBox",
+      "caption": "Maps"
+    },
+    {
       "name": "UpdateInterval",
       "type": "IntervalBox",
       "caption": "Sekunden"
