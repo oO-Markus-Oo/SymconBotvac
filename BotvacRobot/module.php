@@ -227,8 +227,10 @@ class BotvacRobot extends IPSModule
         SetValueString($this->GetIDForIdent('DEBUG'), json_encode(@$result));
 
         $maps_array = json_decode($this->ReadPropertyString('Maps'), true);
-		 foreach ($maps_array as $map) {
-			$mapvarID = $this->RegisterVariableString('', $map['name'], '', 999);
+		$i = -1;
+		foreach ($maps_array as $map) {
+			$i++;
+			$mapvarID = $this->RegisterVariableString('map_'.$i, $map['name'], '', 999);
 			SetValueString($mapvarID, $map['id']);
 		}
         
