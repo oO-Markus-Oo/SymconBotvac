@@ -143,13 +143,14 @@ class BotvacRobot extends IPSModule
             $params['spotHeight'] = 200;
         } else {
 			$active_map = GetValueInteger($this->GetIDForIdent('ACTIVE_MAP'));
+			echo $active_map;
 			if ($active_map == 0)
 			{
 				$params['category'] = 2;
 			}
 			else
 			{
-				$params['category'] = 4;
+				$params['category'] = 2;
 			}
         }
 
