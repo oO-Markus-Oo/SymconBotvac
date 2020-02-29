@@ -57,10 +57,6 @@ class BotvacControl extends IPSModule
             IPS_SetName($id, $name);
             IPS_ApplyChanges($id);
             BVC_Update($id);
-            $SkriptID = @IPS_GetScriptIDByName("Map_Array", $id);
-            if ($SkriptID === false)
-            else
-                echo "Die Skript-ID lautet: ". $SkriptID;
         }
         echo "$name (Serial: $serial)\n";
     }
