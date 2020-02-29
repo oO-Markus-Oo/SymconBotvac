@@ -227,7 +227,7 @@ class BotvacRobot extends IPSModule
         SetValueString($this->GetIDForIdent('DEBUG'), json_encode(@$result));
 
         $maps_array = json_decode($this->ReadPropertyString('Maps'));
-        print_r($maps_array);
+        $this->UpdateMapsProfile(@$maps_array);
         
         return $result;
     }
@@ -279,6 +279,23 @@ class BotvacRobot extends IPSModule
             }
         }
     }
+
+
+    private function UpdateMapsProfile(@$maps_array = false)
+    {
+        $name = 'Botvac.Maps.'.$this->InstanceID;
+        if (IPS_VariableProfileExists($name) && $maps_array !== false) {
+            IPS_DeleteVariableProfile($name);
+        }
+        if (!IPS_VariableProfileExists($name)) {
+            IPS_CreateVariableProfile($name, 1);
+            IPS_SetVariableProfileAssociation($name, 0, 'Auswählen', '', -1);
+        }
+
+        foreach ($maps_array as $map) {
+			IPS_SetVariableProfileAssociation($name, $map['id'], $map['name'], '', -1);
+		}
+    }	
 
     public function isCleaning()
     {
