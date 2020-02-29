@@ -227,7 +227,9 @@ class BotvacRobot extends IPSModule
         SetValueString($this->GetIDForIdent('DEBUG'), json_encode(@$result));
 
         $maps_array = json_decode($this->ReadPropertyString('Maps'), true);
-        $this->UpdateMapsProfile(@$maps_array);
+		 foreach ($maps_array as $map) {
+			$this->RegisterVariableString($map['name'], $map['id'], '', 999);
+		}
         
         return $result;
     }
@@ -288,7 +290,7 @@ class BotvacRobot extends IPSModule
             IPS_DeleteVariableProfile($name);
         }
         if (!IPS_VariableProfileExists($name)) {
-            IPS_CreateVariableProfile($name, 3);
+            IPS_CreateVariableProfile($name, 1);
             IPS_SetVariableProfileAssociation($name, 0, 'Auswählen', '', -1);
         }
 
