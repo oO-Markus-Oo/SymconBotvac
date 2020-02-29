@@ -230,7 +230,7 @@ class BotvacRobot extends IPSModule
 		$i = -1;
 		foreach ($maps_array as $map) {
 			$i++;
-			$mapvarID = $this->RegisterVariableString('map_'.$i, $map['name'], '', 999);
+			$mapvarID = $this->RegisterVariableString('map_'.$i, "Map: ".$map['name'], '', 999);
 			SetValueString($mapvarID, $map['id']);
 		}
         
