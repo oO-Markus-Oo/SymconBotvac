@@ -94,29 +94,7 @@ class BotvacControl extends IPSModule
             $this->SetStatus(201);
         }
     }
-
-    if (!function_exists('CreateCategoryByName'))
-    {
-    function CreateCategoryByName($ParentID, $name, $pos=0, $hidden=false)
-    {
-      global $_IPS;
-      $Catid = @IPS_GetCategoryIDByName ($name, $ParentID);
-      if($Catid === false)
-      {
-        $Catid = IPS_CreateCategory();
-        IPS_SetParent($Catid, $ParentID);
-        IPS_SetName($Catid, $name);
-        IPS_SetPosition($Catid, $pos);
-        IPS_SetHidden($Catid, $hidden);
-        IPS_SetInfo($Catid, "This category was created by: #".$_IPS['SELF']."#");
-      }
-      else
-      {
-        IPS_SetPosition($Catid, $pos);
-      }
-      return $Catid;
-    }
-    }    
+    
     
     public function Request($url, $method, $params = array(), $headers = array())
     {
