@@ -233,6 +233,7 @@ class BotvacRobot extends IPSModule
 			$mapvarID = $this->RegisterVariableString('map_'.$i, "Map: ".$map['name'], '', 999);
 			SetValueString($mapvarID, $map['id']);
 		}
+		$this->UpdateMapsProfile(@$maps_array);
         
         return $result;
     }
@@ -297,8 +298,10 @@ class BotvacRobot extends IPSModule
             IPS_SetVariableProfileAssociation($name, 0, 'Auswählen', '', -1);
         }
 
+		$i = 0;
         foreach ($maps_array as $map) {
-			IPS_SetVariableProfileAssociation($name, $map['id'], $map['name'], '', -1);
+			$i++;
+			IPS_SetVariableProfileAssociation($name, $i, $map['name'], '', -1);
 		}
     }	
 
