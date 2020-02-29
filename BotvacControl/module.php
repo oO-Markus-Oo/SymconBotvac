@@ -37,17 +37,7 @@ class BotvacControl extends IPSModule
                 $nucleoUrl = $robot['nucleo_url'];
                 $this->CreateOrUpdateRobot($serial, $secret, $name, $nucleoUrl);
             }
-        }
-
-        $url = $vendorBaseUrl . '/users/me/robots/'.$serial.'/maps';
-        $params = array();
-        $headers = array();
-        $headers[] = "Accept: application/json";
-        $headers[] = "Authorization: Token token=" . $this->ReadPropertyString('Token');
-        $result = $this->Request($url, 'GET', $params, $headers);
-        if (isset($result['maps'])) {
-            print_r($result);
-        }        
+        }      
     }
 
     private function CreateOrUpdateRobot($serial, $secret, $name, $nucleo_url)
