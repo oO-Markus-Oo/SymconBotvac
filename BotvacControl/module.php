@@ -41,9 +41,7 @@ class BotvacControl extends IPSModule
                 $mapheaders[] = "Accept: application/json";
                 $mapheaders[] = "Authorization: Token token=" . $this->ReadPropertyString('Token');
                 $mapresult = $this->Request($mapurl, 'GET', $mapparams, $mapheaders);
-                if (isset($mapresult['maps'])) {
-                    $map_arr = json_encode($mapresult);
-                }                      
+                $map_arr = json_encode($mapresult);                     
                 $this->CreateOrUpdateRobot($serial, $secret, $name, $nucleoUrl, $map_arr);
             }
         }      
