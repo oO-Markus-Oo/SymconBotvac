@@ -292,9 +292,9 @@ class BotvacRobot extends IPSModule
             IPS_SetVariableProfileAssociation($name, 0, 'Auswählen', '', -1);
         }
 
-        foreach ($maps_array as $map) {
-			IPS_SetVariableProfileAssociation($name, $map['id'], $map['name'], '', -1);
-		}
+//        foreach ($maps_array as $map) {
+//			IPS_SetVariableProfileAssociation($name, $map['id'], $map['name'], '', -1);
+//		}
     }	
 
     public function isCleaning()
