@@ -151,12 +151,12 @@ class BotvacRobot extends IPSModule
 			else
 			{
 				$active_zone = GetValueInteger($this->GetIDForIdent('ACTIVE_ZONE'));
-				$zone_array = GetValueString($this->GetIDForIdent('ACTIVE_ZONE'));
+				$zone_array = GetValueString($this->GetIDForIdent('MAPBOUNDARIES'));
 				if ($active_zone == 0) $params['boundaryId'] = "";
 				if ($active_zone >= 1)
 				{
 					//Zone laden
-					$zones_array = json_decode($this->ReadPropertyString('MAPBOUNDARIES'), true);
+					$zones_array = json_decode($zone_array), true);
 					$zone_array_id = $active_zone-1;
 					$boundaries_id = $zones_array['data']['boundaries'][$zone_array_id]['id'];	
 					$params['boundaryId'] = $boundaries_id;	
