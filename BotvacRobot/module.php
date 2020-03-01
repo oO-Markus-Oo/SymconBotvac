@@ -349,7 +349,7 @@ class BotvacRobot extends IPSModule
         }
 
 		$i = 0;
-        foreach ($zones_array['boundaries'] as $zone) {
+        foreach ($zones_array['data']['boundaries'] as $zone) {
 			$i++;
 			if ($zone['name'] <> "")
 			{
