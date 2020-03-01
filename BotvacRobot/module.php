@@ -245,6 +245,7 @@ class BotvacRobot extends IPSModule
 		}
 		$this->UpdateMapsProfile(@$maps_array);
 		$current_map_array_id = $this->RegisterVariableInteger('ACTIVE_MAP', 'Aktive Karte', 'Botvac.Maps.'.$this->InstanceID, 4);
+		$current_map_array_id = GetValueInteger($current_map_array_id);
 		
 		//Karten-Boundaries laden
 		$this->RegisterVariableString('MAPBOUNDARIES', 'Map Boundaries', '', 3);
