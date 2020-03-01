@@ -61,6 +61,7 @@ class BotvacRobot extends IPSModule
         $this->RegisterVariableInteger('NAVIGATIONMODE', 'Navigations-Modus', 'Botvac.NavigationMode', 3);
         $this->RegisterVariableString('ERROR', 'Fehler', '', 3);
         $this->RegisterVariableString('DEBUG', 'Debug', '', 3);
+		$this->RegisterVariableString('MAPBOUNDARIES', 'Map Boundaries', '', 3);
 
         if (!@$this->GetIDForIdent('BATTERY')) {
             $this->RegisterVariableInteger('BATTERY', 'Batterie', '~Battery.100', 80);
@@ -234,6 +235,7 @@ class BotvacRobot extends IPSModule
         $this->UpdateCommandProfile(@$result['availableCommands']);
         SetValueString($this->GetIDForIdent('DEBUG'), json_encode(@$result));
 
+        //Karten laden
         $maps_array = json_decode($this->ReadPropertyString('Maps'), true);
 		$i = -1;
 		foreach ($maps_array as $map) {
@@ -243,7 +245,18 @@ class BotvacRobot extends IPSModule
 		}
 		$this->UpdateMapsProfile(@$maps_array);
 		$this->RegisterVariableInteger('ACTIVE_MAP', 'Aktive Karte', 'Botvac.Maps.'.$this->InstanceID, 4);
-        
+		
+		//Karten-Boundaries laden
+		$this->RegisterVariableString('MAPBOUNDARIES', 'Map Boundaries', '', 3);
+        $current_map_array_id = $this->ReadPropertyString('ACTIVE_MAP');
+		if ($current_map_array_id >= 0)
+		{
+			$current_map_array_id = $current_map_array_id-1;
+			$maps_array = json_decode($this->ReadPropertyString('Maps'), true);
+			$current_map_string = $maps_array[$current_map_id]['name'];
+			$current_map_id = $maps_array[$current_map_id]['id'];
+			echo $current_map_id;
+		}
         return $result;
     }
 
