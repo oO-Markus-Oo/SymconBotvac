@@ -251,7 +251,9 @@ class BotvacRobot extends IPSModule
 		if ($current_map_array_id >= 0)
 		{
 			$current_map_array_id = $current_map_array_id-1;
+			echo $current_map_array_id;
 			$maps_array = json_decode($this->ReadPropertyString('Maps'), true);
+			print_r($maps_array);
 			$current_map_string = $maps_array[$current_map_id]['name'];
 			$current_map_id = $maps_array[$current_map_id]['id'];
 			echo $current_map_id;
