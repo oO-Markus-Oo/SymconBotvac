@@ -150,7 +150,8 @@ class BotvacRobot extends IPSModule
 			}
 			else
 			{
-				$params['boundaryId'] = "";
+				$active_zone = GetValueInteger($this->GetIDForIdent('ACTIVE_ZONE'));
+				if ($active_zone == 0) $params['boundaryId'] = "";
 				$params['category'] = 4;
 			}
         }
@@ -262,6 +263,10 @@ class BotvacRobot extends IPSModule
 			$result_boundaries = $this->Request('getMapBoundaries', $params_boundaries);
 			SetValueString($map_boundaries_id, json_encode(@$result_boundaries));
 		}
+		$this->UpdateZonesProfile(@$result_boundaries);
+		$current_zone_array_id = $this->RegisterVariableInteger('ACTIVE_ZONE', 'Aktiver Bereich', 'Botvac.Zones.'.$this->InstanceID, 4);
+		$current_zone_array_id = GetValueInteger($current_zone_array_id);
+		
         return $result;
     }
 
@@ -331,6 +336,27 @@ class BotvacRobot extends IPSModule
 			IPS_SetVariableProfileAssociation($name, $i, $map['name'], '', -1);
 		}
     }	
+
+    private function UpdateZonesProfile($zones_array = false)
+    {
+        $name = 'Botvac.Zones.'.$this->InstanceID;
+        if (IPS_VariableProfileExists($name) && $maps_array !== false) {
+            IPS_DeleteVariableProfile($name);
+        }
+        if (!IPS_VariableProfileExists($name)) {
+            IPS_CreateVariableProfile($name, 1);
+            IPS_SetVariableProfileAssociation($name, 0, 'Alle Bereiche', '', -1);
+        }
+
+		$i = 0;
+        foreach ($zones_array as $zone) {
+			$i++;
+			if ($zone['name'] <> "")
+			{
+				IPS_SetVariableProfileAssociation($name, $i, $zone['name'], '', -1);
+			}
+		}
+    }
 
     public function isCleaning()
     {
