@@ -156,7 +156,7 @@ class BotvacRobot extends IPSModule
 				if ($active_zone >= 1)
 				{
 					//Zone laden 
-					$zones_array = json_decode($zone_array), true);
+					$zones_array = json_decode($zone_array, true);
 					$zone_array_id = $active_zone-1;
 					$boundaries_id = $zones_array['data']['boundaries'][$zone_array_id]['id'];	
 					$params['boundaryId'] = $boundaries_id;	
