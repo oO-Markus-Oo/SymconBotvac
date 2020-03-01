@@ -340,7 +340,7 @@ class BotvacRobot extends IPSModule
     private function UpdateZonesProfile($zones_array = false)
     {
         $name = 'Botvac.Zones.'.$this->InstanceID;
-        if (IPS_VariableProfileExists($name) && $maps_array !== false) {
+        if (IPS_VariableProfileExists($name) && $zones_array !== false) {
             IPS_DeleteVariableProfile($name);
         }
         if (!IPS_VariableProfileExists($name)) {
