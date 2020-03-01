@@ -150,6 +150,7 @@ class BotvacRobot extends IPSModule
 			}
 			else
 			{
+				$params['boundaryId'] = "3cc6ca9e-dead-457b-a706-f88a3aa11b5c";
 				$params['category'] = 4;
 			}
         }
