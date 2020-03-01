@@ -160,7 +160,6 @@ class BotvacRobot extends IPSModule
 					$zone_array_id = $active_zone-1;
 					$boundaries_id = $zones_array['data']['boundaries'][$zone_array_id]['id'];	
 					$params['boundaryId'] = $boundaries_id;	
-					echo $boundaries_id;
 				}
 				$params['category'] = 4;
 			}
